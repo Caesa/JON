@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <title>JON</title>
+    <script type="text/javascript">
+
+        var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
+
+        function obtenerSexo(){
+            var sexo;
+            if (document.getElementById('mujer').checked) {
+                sexo = "mujer";
+            };
+            if (document.getElementById('hombre').checked) {
+                sexo = "hombre";
+            };
+
+            return sexo;
+        }
+
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM PERSONA', [], function (tx, results) {
+            var len = results.rows.length, i;
+            msg = "<p>Found rows: " + len + "</p>";
+            document.querySelector('#status').innerHTML +=  msg;
+            for (i = 0; i < len; i++){
+                alert(results.rows.item(i).usuario );
+                alert(results.rows.item(i).contrasenia );
+            }
+        }, null);
+        });
+
+        function borrarDatabase(){
+            var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
+            db.transaction(function (tx) {
+                tx.executeSql('DROP TABLE PERSONA');
+            });
+        }
+
+        function registro(){
+            var usuario = document.getElementById('usuario').value;
+            var pass = document.getElementById('pass').value;
+            var nombre = document.getElementById('nombre').value;
+            var edad = document.getElementById('edad').value;
+            var sexo = obtenerSexo();
+
+            registrar(usuario, pass, nombre, edad, sexo);
+
+            //alert(sexo);
+        }
+    </script>
+</head>
+<body>
+    <div data-role="header" data-position="fixed">
+     <center><h1 style="margin-top:1%;margin-bottom:1%;">Just One Night</h1></center>
+     <a href="#add-form" data-icon="bars" data-iconpos="notext">Menu</a>
+     <a href="#add-form" data-icon="gear" data-iconpos="notext">Add</a>
+ </div>
+ <div id="centradologin">
+      <input type="text" data-clear-btn="true" name="usuario" id="usuario" value="" placeholder="Usuario">
+     <input type="password" data-clear-btn="true" name="pass" id="pass" value="" placeholder="Contraseña">
+     <input type="text" data-clear-btn="true" name="nombre" id="nombre" value="" placeholder="Nombre">
+     <input type="number" data-clear-btn="true" name="edad" id="edad" value="18" min="18" placeholder="Edad">
+     <input type="radio" name="sexo" id="mujer">Femenino</input>
+     <input type="radio" name="sexo" id="hombre">Masculino</input>
+     <div id="status" name="status"></div>
+</div>
+<div id="alfondo"><input type="submit" class="alfondo" value="Registrarse" onclick="borrarDatabase()" /></div>
+</body>
+</html>
