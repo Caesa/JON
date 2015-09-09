@@ -18,24 +18,34 @@
 					<a href="#add-form" data-icon="gear" data-iconpos="notext">Add</a>
 				</div>
 				<div data-role="tabs" id="tabs">
-  <div data-role="navbar">
-    <ul>
-      <li><a href="#one" data-ajax="false">Personas</a></li>
-      <li><a href="#two" data-ajax="false">Compatibilidades</a></li>
-    </ul>
-  </div>
-  <div id="one" class="ui-body-d ui-content">
-    <h1>No se encontraron mas personas.</h1>
-  </div>
-  <div id="two">
-    <ul data-role="listview" data-inset="true">
-        <li><a href="#">Acura</a></li>
-        <li><a href="#">Audi</a></li>
-        <li><a href="#">BMW</a></li>
-        <li><a href="#">Cadillac</a></li>
-        <li><a href="#">Ferrari</a></li>
-    </ul>
-  </div>
-</div>
+  				<div data-role="navbar">
+    				<ul>
+      				<li><a href="#one" data-ajax="false">Personas</a></li>
+      				<li><a href="#two" data-ajax="false">Compatibilidades</a></li>
+    				</ul>
+  				</div>
+				<div id="one">
+  				<center><img class="fotoperfil" src="img/perfil1.jpg">
+					<br>Nombre: El Kesa<br>Edad: 18<br>Whatsapp: 3512467785
+					<div class="ui-grid-d" style="margin-top:5%;">
+    				<div class="ui-block-a"><a></a></div>
+    				<div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    				<div class="ui-block-c"><a></a></div>
+    				<div class="ui-block-d"><a class="ui-shadow ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline">Button</a></div>
+    				<div class="ui-block-e"><a></a></div>
+					</div>
+					</center>
+				</div>
+  			<div id="two">
+					<div class="ui-grid-a">
+      		<div class="ui-block-a" style="margin-top: 2%;margin-bottom: 2%;">
+        		<img class="imgredondeada" src="img/miniperfil1.jpg">
+					</div>
+      		<div class="ui-block-b">
+						<center><h1>Kaesa</h1></center><br><a style="text-size: "><img src="img/whatsapp.png"> 3512467785<br><img src="img/twitter.png"> @EmiMonaco8<br><img src="img/instagram.png">emi.monaco<br><img src="img/snapchat.png">emimonaco
+      		</div>
+    		</div>
+ 	 			</div>
+			</div>
 		</body>
 </html>

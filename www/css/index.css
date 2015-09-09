@@ -24,7 +24,7 @@ body {
     background-attachment:fixed;
     background-color: #0B0B61;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
+    font-size:10px;
     margin:0px;
     padding:0px;
     text-transform:uppercase;
@@ -53,7 +53,6 @@ div#centradologin {
     right: 5%;
 }
 .imgredondeada{
-		background-image: url("/img/clubfchica.jpg");
 		border-radius: 45% / 20%;
 		box-shadow: 0px 0px 15px #000;
 		padding: 0;
@@ -67,4 +66,32 @@ div#centradologin {
 		-webkit-transition: all 1s;
 		-o-transition: all 1s;
 		cursor:pointer;
+}
+.fotoperfil{
+		margin-top: 7%;
+		margin-bottom: 7%;
+		border-radius: 45% / 20%;
+		box-shadow: 0px 0px 15px #000;
+		padding: 0;
+		max-width: 100%;
+		height: auto;
+}
+.ui-icon-heart {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(1.5);
+}
+.ui-icon-delete {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(1.5);
+}
+.fotocompat{
+		margin-top: 7%;
+		margin-bottom: 7%;
+		border-radius: 45% / 20%;
+		box-shadow: 0px 0px 15px #000;
+		padding: 0;
+		max-width: 97%;
+		height: auto;
 }
