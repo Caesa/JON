@@ -30,11 +30,12 @@
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM PERSONA', [], function (tx, results) {
             var len = results.rows.length, i;
+            alert("hola"+len);
             msg = "<p>Found rows: " + len + "</p>";
             document.querySelector('#status').innerHTML +=  msg;
             for (i = 0; i < len; i++){
-                alert(results.rows.item(i).usuario );
-                alert(results.rows.item(i).contrasenia );
+                msg = "<p>Usuario: " + results.rows.item(i).usuario + "</p>";
+                msg = "<p>Contraseña: " + results.rows.item(i).contrasenia + "</p>";
             }
         }, null);
         });
@@ -43,7 +44,12 @@
             var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
             db.transaction(function (tx) {
                 tx.executeSql('DROP TABLE PERSONA');
+                tx.executeSql('DROP TABLE clubf');
+                tx.executeSql('DROP TABLE enrica');
+                tx.executeSql('DROP TABLE gala');
+                tx.executeSql('DROP TABLE rosario');
             });
+            alert("Se borro todo de la base de datos");
         }
 
         function registro(){
@@ -74,6 +80,6 @@
      <input type="radio" name="sexo" id="hombre">Masculino</input>
      <div id="status" name="status"></div>
 </div>
-<div id="alfondo"><input type="submit" class="alfondo" value="Registrarse" onclick="borrarDatabase()" /></div>
+<div id="alfondo"><input type="submit" class="alfondo" value="Registrarse" onclick="" /></div>
 </body>
 </html>

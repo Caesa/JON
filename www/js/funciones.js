@@ -21,7 +21,6 @@ function onDeviceReady() {
 function crearDB(){
 	var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
 	db.transaction(populateDB, errorCB);
-  return db;
 }
 
 //La funcion que crea la base de datos y todas sus tablas
