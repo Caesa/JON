@@ -15,6 +15,8 @@
 
         var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
 
+        crearDB();
+
         function obtenerSexo(){
             var sexo;
             if (document.getElementById('mujer').checked) {
@@ -30,12 +32,12 @@
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM PERSONA', [], function (tx, results) {
             var len = results.rows.length, i;
-            alert("hola"+len);
-            msg = "<p>Found rows: " + len + "</p>";
+            //alert("hola"+len);
+            msg = "<p>Filas encontradas: " + len + "</p>";
             document.querySelector('#status').innerHTML +=  msg;
             for (i = 0; i < len; i++){
                 msg = "<p>Usuario: " + results.rows.item(i).usuario + "</p>";
-                msg = "<p>Contraseña: " + results.rows.item(i).contrasenia + "</p>";
+                document.querySelector('#status').innerHTML +=  msg;
             }
         }, null);
         });
@@ -57,9 +59,10 @@
             var pass = document.getElementById('pass').value;
             var nombre = document.getElementById('nombre').value;
             var edad = document.getElementById('edad').value;
+            var numero = document.getElementById('numero').value;
             var sexo = obtenerSexo();
 
-            registrar(usuario, pass, nombre, edad, sexo);
+            registrar(usuario, numero, pass, nombre, edad, sexo);
 
             //alert(sexo);
         }
@@ -74,12 +77,14 @@
  <div id="centradologin">
       <input type="text" data-clear-btn="true" name="usuario" id="usuario" value="" placeholder="Usuario">
      <input type="password" data-clear-btn="true" name="pass" id="pass" value="" placeholder="Contraseña">
+     <input type="number" data-clear-btn="true" name="numero" id="numero" placeholder="Tu numero de telefono">
      <input type="text" data-clear-btn="true" name="nombre" id="nombre" value="" placeholder="Nombre">
      <input type="number" data-clear-btn="true" name="edad" id="edad" value="18" min="18" placeholder="Edad">
      <input type="radio" name="sexo" id="mujer">Femenino</input>
      <input type="radio" name="sexo" id="hombre">Masculino</input>
      <div id="status" name="status"></div>
 </div>
-<div id="alfondo"><input type="submit" class="alfondo" value="Registrarse" onclick="" /></div>
+<div id="alfondo"><input type="submit" class="alfondo" value="Registrarse" onclick="registro()" /></div>
+<div><input type="submit" class="alfondo" value="Borrar DB" onclick="borrarDatabase()" /></div>
 </body>
 </html>
