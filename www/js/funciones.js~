@@ -46,8 +46,7 @@ function registrar(usuario, pass, nombre, edad, sexo) {
 
 //Con esta funcion se compara si las personas son compatibles o no
 
-function compatible (persona1, persona2) {
-	var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
+function compatible (persona1, persona2, boliche) {
 	tx.transaction.executeSql('INSERT INTO  ?(persona1, persona2) VALUES (?, ?)', [boliche, persona1, persona2]);
 	tx.executeSql('SELECT * FROM ? WHERE persona2 = ? AND persona1 = ? AND boliche = ?', [boliche, persona1, persona2], function (tx, results) {
   var len = results.rows.length, i;
