@@ -48,7 +48,7 @@ function registrar(usuario, numero, pass, nombre, edad, sexo) {
 
 function compatible (persona1, persona2) {
 	var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
-	tx.transaction.executeSql('INSERT INTO  ?(persona1, persona2) VALUES (?, ?)', [boliche, persona1, persona2]);
+	db.transaction(function alguna(tx){tx.executeSql("INSERT INTO  '"+boliche+"'(persona1, persona2) VALUES ('"+persona1+"', '"+persona2+"')");}, errorCB);
 	tx.executeSql('SELECT * FROM ? WHERE persona2 = ? AND persona1 = ? AND boliche = ?', [boliche, persona1, persona2], function (tx, results) {
   var len = results.rows.length, i;
   for (i = 0; i < len; i++) {
@@ -61,34 +61,60 @@ function compatible (persona1, persona2) {
 //Con esta funcion se hace el ingreso al boliche para ver a las otras personas que van a ir esa noche
 
 function entrarBoliche (usuario, boliche) {
-	tx.transaction.executeSql('INSERT INTO  ?(persona1, persona2) VALUES (?, ?)', [boliche, usuario, null]);
+    var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
+	db.transaction.(function ola(tx){executeSql("INSERT INTO '"+boliche+"'(persona1, persona2) VALUES ('"+usuario+"', null)");}, errorCB);
 }
 
 //Esta funcion es la que se hace para loguearse
 
 function login (usuario, contrasenia) {
-    tx.executeSql("SELECT * FROM PERSONA WHERE usuario = '"+usuario+"' AND contrasenia = '"+contrasenia+"'" , function (tx, results) {
+    var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
+    db.transaction.(function ola(tx){tx.executeSql("SELECT * FROM PERSONA WHERE usuario = '"+usuario+"' AND contrasenia = '"+contrasenia+"'" , function (tx, results) {
     var len = results.rows.length;
     if (len == 1) {
         window.locationf="/index.html";
-      };
+            };
+        });
     });
 }
 
 //Esta funcion carga los distintos usuarios que van a ir al mismo boliche que vos
 
 function cargarUsuarios(usuario, boliche){
-	tx.executeSql('SELECT * FROM ? WHERE NOT persona1 = ? AND persona2 = ?', [usuario, null], function (tx, results) {
-  var len = results.rows.length, i;
-  for (i = 0; i < len; i++) {
-    alert(results.rows.item(i).text);
-  }
-});
+    var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
+    var numero, edad, nombre;
+    db.transaction.(function ola(db, tx){tx.executeSql("SELECT persona1 FROM '"+boliche+"' WHERE NOT persona1 = '"+usuario+"' AND persona2 = null", function (db, tx, results) {
+    var len = results.rows.length, i;
+    for (i = 0; i < len; i++) {
+        db.transaction.(function ola(tx){tx.executeSql("SELECT * FROM PERSONA WHERE usuario = '"+results.rows.item(i).persona1+"'" , function (tx, results) {
+        var len = results.rows.length, e;
+        for (e = 0; e < len; e++) {
+            numero = results.rows.item(e).numero;
+            edad = results.rows.item(e).edad;
+            nombre = results.rows.item(e).nombre;
+
+            var midiv = document.createElement("div");
+            midiv.setAttribute("id","one");
+            midiv.innerHTML = '<center><img class="fotoperfil" src="img/perfil1.jpg">
+                    <br>Nombre: '+nombre+'<br>Edad: '+edad+'<br>Whatsapp: '+numero+'
+                    <div class="ui-grid-d" style="margin-top:5%;">
+                    <div class="ui-block-a"><a></a></div>
+                    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-heart ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                    <div class="ui-block-c"><a></a></div>
+                    <div class="ui-block-d"><a class="ui-shadow ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                    <div class="ui-block-e"><a></a></div>
+                    </div>
+                    </center>';
+            document.body.appendChild(midiv);
+            };
+        });
+    });
+    }
+        });
+    });
 }
 
-function borrarDatabase(){
-    var db = openDatabase('JON', '1.0', 'My Sample DB', 100 * 1024);
-    db.transaction(function (tx) {
-  tx.executeSql('DROP TABLE PERSONA');
-});
-}
+
+                <div id="one">
+                
+                </div>
